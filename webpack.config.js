@@ -3,38 +3,41 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-let mode = 'development';
-if (process.env.NODE_ENV === 'production') {
-    mode = 'production';
-}
+const isProd = process.env.NODE_ENV === "production"
 
 module.exports = {
-    // context: path.resolve(__dirname, "src"),                             // базовый путь с проектом
-    mode,                                                                    // выбор режима сборки, разработка или продакшен
-    devtool: "source-map",
+    // context: path.resolve(__dirname, "src"),                              // базовый путь с проектом
+    mode: isProd ? "production" : "development",                             // выбор режима сборки, разработка или продакшен
+    devtool: isProd ? false : "eval-cheap-module-source-map",                // отображение исходников при режиме разработки
     entry: [
         "@babel/polyfill",                                                   // подключения полифила для babel
         path.resolve(__dirname, "src/index.tsx")                             // точка входа
     ],
     output: {                                                                // директория со сборкой проекта
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].[hash].js",
-        publicPath: "/",
+        path: path.resolve(__dirname, "./dist"),
+        filename: `./js/${isProd ? `[name].[hash].js` : `[name].js`}`,       // название и директория для js
+        publicPath: "/", // "/dist/"
         assetModuleFilename: path.join("assets","[name].[contenthash][ext]") // путь для хранения assets
     },
     module: {
         rules: [
             {
-                test: /\.m?jsx$/,
+                test: /\.(js|ts)x?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
                     options: {
                         cacheDirectory: true,
                         presets: [
-                            "@babel/preset-env",       // preset преобразования кода для старых браузеров
-                            "@babel/preset-react",     // preset для работы react
-                            "@babel/preset-typescript" // preset для typescript
+                            "@babel/preset-typescript",    // preset typescript
+                            [
+                                "@babel/preset-env",       // preset transpile JS to ES5
+                                {
+                                    "useBuiltIns": "usage",
+                                    "corejs": 3
+                                }
+                            ],
+                            "@babel/preset-react",         // preset react
                         ]
                     }
                 }
@@ -57,7 +60,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
-                type: mode === 'production' ? 'asset' : 'asset/resource',
+                type: isProd ? 'asset' : 'asset/resource',
                 // В продакшен режиме изображения размером до 8кб будут инлайнится в код
                 // В режиме разработки все изображения будут помещаться в dist/assets
             },
@@ -75,13 +78,14 @@ module.exports = {
         ]
     },
     resolve: {
-    extensions: ['.jsx', '.ts', '.tsx'], // добавления массива с расширениями чтоб не писать их при импорте
+        extensions: ['.tsx', '.ts', '.jsx', '.js'], // добавления массива с расширениями чтоб не писать их при импорте
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             template: path.resolve(__dirname, "./src/index.html"),
-            filename: "index.html"
+            filename: "index.html",
+            minify: isProd
         }),
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",

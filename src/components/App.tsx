@@ -1,11 +1,11 @@
-import React, {FC} from "react";
+import * as React from "react";
 
 function App({}) {
  return (
      <div>
-         Приложение на React!!!
+         <h1>Главная страница будущего приложения</h1>
      </div>
  )
 }
 
-export default App as FC;
+export default App as React.FC;
