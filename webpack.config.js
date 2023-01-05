@@ -2,21 +2,24 @@ const path = require("path");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
+// ПЕРЕДЕЛАТЬ НА ДВА КОНФИГА!!! Иначе это просто ...
 
 const isProd = process.env.NODE_ENV === "production"
 
 module.exports = {
-    // context: path.resolve(__dirname, "src"),                              // базовый путь с проектом
-    mode: isProd ? "production" : "development",                             // выбор режима сборки, разработка или продакшен
-    devtool: isProd ? false : "eval-cheap-module-source-map",                // отображения кода в режиме разработки
-                                                                             // source-map
+    // context: path.resolve(__dirname, "src"),                               // базовый путь с проектом
+    mode: isProd ? "production" : "development",                              // выбор режима сборки, разработка или продакшен
+    devtool: isProd ? false : "eval-cheap-module-source-map",                 // отображения кода в режиме разработки
+                                                                              // source-map
     entry: [
-        "@babel/polyfill",                                                   // подключения полифила для babel
-        path.resolve(__dirname, "src/index.tsx")                             // точка входа
+        "@babel/polyfill",                                                    // подключения полифила для babel
+        path.resolve(__dirname, "src/index.tsx")                              // точка входа
     ],
-    output: {                                                                // директория со сборкой проекта
+    output: {                                                                 // директория со сборкой проекта
         path: path.resolve(__dirname, "./dist"),
-        filename: `js/${isProd ? `[name].[hash].js` : `[name].js`}`,         // название и директория для js
+        filename: `js/${isProd ? `[name].[hash].js` : `[name].js`}`,          // название и директория для js
         publicPath: "/",
         assetModuleFilename: path.join("assets", "[name].[contenthash][ext]") // путь для хранения assets
     },
@@ -94,6 +97,24 @@ module.exports = {
         }),
     ],
     optimization: {
+        // minimizer нужен только для продакшена, надо убрать из общей сборки.
+        // переделать по документации
+        minimizer: [
+            new ImageMinimizerPlugin({
+                minimizer: {
+                    implementation: ImageMinimizerPlugin.imageminMinify,
+                    options: {
+                        plugins: [
+                            ['gifsicle', { interlaced: true }],
+                            ['jpegtran', { progressive: true }],
+                            ['optipng', { optimizationLevel: 5 }],
+                            ['svgo', { name: 'preset-default' }],
+                        ]
+                    }
+                }
+            })
+        ],
+        // правило по которому будут создаваться chunk. нужно только для продакшена.
         splitChunks: {
             cacheGroups: {
                 vendors: {
@@ -111,6 +132,12 @@ module.exports = {
                 },
             }
         }
+    },
+    // Размер Chunks
+    performance: {
+        hints: false,
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000,
     },
     devServer: {
         watchFiles: path.resolve(__dirname, "src"),
