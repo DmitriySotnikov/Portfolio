@@ -8,16 +8,17 @@ const isProd = process.env.NODE_ENV === "production"
 module.exports = {
     // context: path.resolve(__dirname, "src"),                              // базовый путь с проектом
     mode: isProd ? "production" : "development",                             // выбор режима сборки, разработка или продакшен
-    devtool: isProd ? false : "eval-cheap-module-source-map",                // отображение исходников при режиме разработки
+    devtool: isProd ? false : "eval-cheap-module-source-map",                // отображения кода в режиме разработки
+                                                                             // source-map
     entry: [
         "@babel/polyfill",                                                   // подключения полифила для babel
         path.resolve(__dirname, "src/index.tsx")                             // точка входа
     ],
     output: {                                                                // директория со сборкой проекта
         path: path.resolve(__dirname, "./dist"),
-        filename: `./js/${isProd ? `[name].[hash].js` : `[name].js`}`,       // название и директория для js
-        publicPath: "/", // "/dist/"
-        assetModuleFilename: path.join("assets","[name].[contenthash][ext]") // путь для хранения assets
+        filename: `js/${isProd ? `[name].[hash].js` : `[name].js`}`,         // название и директория для js
+        publicPath: "/",
+        assetModuleFilename: path.join("assets", "[name].[contenthash][ext]") // путь для хранения assets
     },
     module: {
         rules: [
@@ -51,7 +52,7 @@ module.exports = {
                         options: {
                             importLoaders: 2,
                             sourceMap: false,
-                            modules: false,
+                            modules: false
                         },
                     },
                     'postcss-loader',
@@ -88,11 +89,34 @@ module.exports = {
             minify: isProd
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[contenthash].css",
+            filename: `css/${isProd ? `[name].[contenthash].css` : `[name].css`}`,
+            chunkFilename: "[id].css"
         }),
     ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    name: "chunk-vendors",
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    chunks: "initial"
+                },
+                common: {
+                    name: "chunk-common",
+                    minChunks: 2,
+                    priority: -20,
+                    chunks: "initial",
+                    reuseExistingChunk: true
+                },
+            }
+        }
+    },
     devServer: {
         watchFiles: path.resolve(__dirname, "src"),
+        historyApiFallback: true,
+        compress: true,
         port: 3000,
+        hot: true
     },
 }
