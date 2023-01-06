@@ -4,8 +4,10 @@
   "description": "My portfolio",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve --hot --open --mode development",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "s_toDelete": "cross-env NODE_ENV=development webpack serve --hot --open --mode development",
+    "start": "webpack serve --open --config webpack.dev.js",
+    "b_toDelete": "cross-env NODE_ENV=production webpack --mode production",
+    "build": "webpack --config webpack.prod.js",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tscheck": "tsc"
@@ -20,6 +22,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
+    "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.0",
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
@@ -43,7 +46,8 @@
     "uuid": "^9.0.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
