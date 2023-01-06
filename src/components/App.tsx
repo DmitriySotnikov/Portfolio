@@ -1,6 +1,6 @@
 import * as React from "react";
-import "../styles/main.scss"
-import logo from "../static/img/webpack.png"
+import "../styles/main.scss";
+import logo from "../static/img/webpack.png";
 
 function App({}) {
  return (

@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "umd",
-    "lib": [
-      "ESNext",
-      "dom"
-    ],
+    "outDir": "./dist/",
+    "allowJs": true,
+    "module": "es6",
+    "target": "es5",
     "jsx": "react",
     "noEmit": true,
     "sourceMap": true,

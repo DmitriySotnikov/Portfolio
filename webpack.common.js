@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: [
@@ -59,7 +59,6 @@ module.exports = {
       filename: "index.html",
     })
   ],
-  // нужно переделать
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     // alias: {"react-dom": "@hot-loader/react-dom"} ???
