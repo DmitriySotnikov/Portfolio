@@ -1,7 +1,6 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
@@ -10,20 +9,10 @@ module.exports = merge(common, {
     devtool: false,
     output: {
         path: path.resolve(__dirname, "./dist"),
-        filename: "js[name].[contenthash].js",
+        filename: "js/[name].[contenthash].js",
         publicPath: "/",
-        assetModuleFilename: path.join("assets", "[name].[contenthash][ext]")
+        assetModuleFilename: "assets/[name].[contenthash][ext]"
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            ...,
-            minify: true
-        }),
-        new MiniCssExtractPlugin({
-            filename: `css/[name].[contenthash].css`,
-            chunkFilename: "[id].css"
-        }),
-    ],
     module: {
         rules: [
             {
@@ -51,8 +40,28 @@ module.exports = merge(common, {
                     "sass-loader"
                 ],
             },
+            {
+                test: /\.(png|jpe?g|gif|webp|ico)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "static/img/[name].[contenthash][ext]",
+                }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "static/font/[name].[contenthash][ext]"
+                }
+            },
         ]
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: `css/[name].[contenthash].css`,
+            chunkFilename: "[id].css"
+        }),
+    ],
     optimization: {
         // переделать по документации
         minimizer: [

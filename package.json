@@ -4,11 +4,8 @@
   "description": "My portfolio",
   "main": "index.js",
   "scripts": {
-    "s_toDelete": "cross-env NODE_ENV=development webpack serve --hot --open --mode development",
-    "start": "webpack serve --open --config webpack.dev.js",
-    "b_toDelete": "cross-env NODE_ENV=production webpack --mode production",
-    "build": "webpack --config webpack.prod.js",
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "start": "cross-env NODE_ENV=development webpack serve --open --config webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tscheck": "tsc"
   },

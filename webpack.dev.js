@@ -41,6 +41,9 @@ module.exports = merge(common, {
             },
         ]
     },
+    plugins: [
+        new MiniCssExtractPlugin({})
+    ],
     devServer: {
         watchFiles: path.resolve(__dirname, "src"),
         historyApiFallback: true,
