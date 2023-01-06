@@ -38,7 +38,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|webp|ico|svg)$/i,
-        type: "asset/resource"
+        type: "asset/resource",
+        generator: {
+          filename: "/static/img/[name].[ext]"
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
@@ -53,7 +56,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      // title: "Webpack Empty Project", // Если его нет в index значить нужно прописать здесь
+      // title: "Webpack Empty Project"
       favicon: path.resolve(__dirname, "src/static/img/favicon.ico"),
       template: path.resolve(__dirname, "src/index.html"),
       filename: "index.html",
