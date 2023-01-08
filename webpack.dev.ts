@@ -1,10 +1,11 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const path = require("path");
+import * as path from 'path';
+import { Configuration } from "webpack";
+import { merge } from "webpack-merge";
+import 'webpack-dev-server';
 
-module.exports = merge(common, {
+const configDev = merge<Configuration>({
     mode: 'development',
-    devtool: "eval-cheap-module-source-map", // 'inline-source-map',
+    devtool: "eval-cheap-module-source-map",    // 'inline-source-map',
     module: {
         rules: [
             {
@@ -41,10 +42,12 @@ module.exports = merge(common, {
         ]
     },
     devServer: {
-        watchFiles: path.resolve(__dirname, "src"),
+        watchFiles: path.resolve(__dirname, "./src"),
         historyApiFallback: true,
         compress: true,
         port: 3000,
         hot: true
     }
 });
+
+export default configDev;

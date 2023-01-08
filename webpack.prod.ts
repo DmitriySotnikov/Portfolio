@@ -1,10 +1,11 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
+import { Configuration } from "webpack";
+import { merge } from "webpack-merge";
+//const common = require('./webpack.common.ts');
 const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
-module.exports = merge(common, {
+const configProd = merge<Configuration>( {
     mode: 'production',
     devtool: false,
     output: {
@@ -124,3 +125,5 @@ module.exports = merge(common, {
         maxAssetSize: 512000,
     },
 });
+
+export default configProd;
