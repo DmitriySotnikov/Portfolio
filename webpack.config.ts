@@ -3,7 +3,8 @@ import { merge } from "webpack-merge";
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+import { babelRules, cssRules } from "./configs/rules";
+// const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 import 'webpack-dev-server';
 
 const config = merge<Configuration>({
@@ -21,73 +22,23 @@ const config = merge<Configuration>({
   },
   module: {
     rules: [
+      cssRules,
+      babelRules,
       {
-        test: /\.(sass|scss|css)$/,
-        use: [
-          "style-loader",
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              sourceMap: true,
-              modules: false
-            },
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: true,
-              postcssOptions: {
-                plugins: [
-                  "postcss-preset-env"
-                ]
-              }
-            }
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: true
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(js|ts)x?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            cacheDirectory: true,
-            presets: [
-              "@babel/preset-typescript",
-              [
-                "@babel/preset-env",
-                {
-                  "useBuiltIns": "usage",
-                  "corejs": 3
-                }
-              ],
-              "@babel/preset-react",
-            ]
-          },
-        },
-      },
-      {
-        test: /\.(png|jpe?g|gif|webp|ico|svg)$/i,
+        test: /\.(png|jpe?g|gif|webp|ico)$/i,
         type: "asset/resource",
         generator: {
           filename: "/static/img/[name].[ext]"
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)$/i,
-        type: "asset/inline"
-      },
-      {
         test: /\.(svg)$/i,
         type: "asset/inline"
       },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: "asset/inline"
+      }
     ]
   },
   plugins: [

@@ -1,52 +1,40 @@
+import * as path from 'path';
 import { Configuration } from "webpack";
-import { merge } from "webpack-merge";
-//const common = require('./webpack.common.ts');
-const path = require("path");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
+import { babelRules, cssRules } from "./configs/rules";
+import "@babel/polyfill";
 
-const configProd = merge<Configuration>( {
+
+const configProd:Configuration = ({
     mode: 'production',
     devtool: false,
+    entry: [
+        //"@babel/polyfill",
+        path.resolve(__dirname, "src/index.tsx"),
+    ],
     output: {
-        path: path.resolve(__dirname, "./dist"),
+        path: path.resolve(__dirname, "dist"),
         filename: "js/[name].[contenthash].js",
-        publicPath: "/",
+        publicPath: "./",
         assetModuleFilename: "assets/[name].[contenthash][ext]"
     },
     module: {
         rules: [
-            {
-                test: /\.(sass|scss|css)$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: "css-loader",
-                        options: {
-                            importLoaders: 2,
-                            sourceMap: false,
-                            modules: false
-                        },
-                    },
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    "postcss-preset-env"
-                                ]
-                            }
-                        }
-                    },
-                    "sass-loader"
-                ],
-            },
+            cssRules,
+            babelRules,
             {
                 test: /\.(png|jpe?g|gif|webp|ico)$/i,
                 type: "asset/resource",
                 generator: {
                     filename: "static/img/[name].[contenthash][ext]",
                 }
+            },
+            {
+                test: /\.(svg)$/i,
+                type: "asset/inline"
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)$/i,
@@ -58,6 +46,13 @@ const configProd = merge<Configuration>( {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: "Webpack Empty Project",
+            favicon: path.resolve(__dirname, "src/static/img/favicon.ico"),
+            template: path.resolve(__dirname, "src/index.html"),
+            filename: "index.html",
+        }),
         new MiniCssExtractPlugin({
             filename: `css/[name].[contenthash].css`,
             chunkFilename: "[id].css"
@@ -123,6 +118,15 @@ const configProd = merge<Configuration>( {
         hints: false,
         maxEntrypointSize: 512000,
         maxAssetSize: 512000,
+    },
+    resolveLoader: {
+        modules: [
+            path.join(__dirname, 'node_modules')
+        ]
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.jsx', '.js'],
+        modules: [path.join(__dirname, 'node_modules')]
     },
 });
 

@@ -4,9 +4,9 @@
   "description": "My portfolio",
   "main": "./src/index.tsx",
   "scripts": {
-    "webpack-ts": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\"",
-    "start": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" NODE_ENV=production webpack serve --open --progress --config ./webpack.config.ts",
-    "build": "npm run webpack-ts webpack --config ./webpack.config.prod.ts",
+    "webpack-ts": "cross-env TS_NODE_PROJECT=\"tsconfig.json\"",
+    "start": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" NODE_ENV=development webpack serve --open --progress --config ./webpack.config.ts",
+    "build": "cross-env TS_NODE_PROJECT=\"configs/tsconfig-webpack-prod.json\" NODE_ENV=production webpack --config ./webpack.prod.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tscheck": "tsc",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx src"
@@ -72,5 +72,11 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+}
 }
