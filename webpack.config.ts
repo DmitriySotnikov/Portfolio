@@ -1,17 +1,18 @@
 import * as path from 'path';
-import { merge } from "webpack-merge";
+// import { merge } from "webpack-merge";
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import { babelRules, cssRules } from "./configs/rules";
+import { babelRules, cssRules } from "./configs/webpack-rules";
 // const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 import 'webpack-dev-server';
 
-const config = merge<Configuration>({
+
+const config: Configuration = ({
   mode: 'development',
   devtool: "eval-cheap-module-source-map",
   entry: [
-    "@babel/polyfill",
+    // "@babel/polyfill",
     path.resolve(__dirname, "src/index.tsx")
   ],
   output: {
@@ -44,7 +45,7 @@ const config = merge<Configuration>({
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "Webpack Empty Project",
+      title: "Portfolio",
       favicon: path.resolve(__dirname, "src/static/img/favicon.ico"),
       template: path.resolve(__dirname, "src/index.html"),
       filename: "index.html",

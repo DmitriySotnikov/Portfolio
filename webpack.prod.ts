@@ -4,15 +4,15 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
-import { babelRules, cssRules } from "./configs/rules";
+import { babelRules, cssRules } from "./configs/webpack-rules";
 import "@babel/polyfill";
 
 
-const configProd:Configuration = ({
+const configProd: Configuration = ({
     mode: 'production',
     devtool: false,
     entry: [
-        //"@babel/polyfill",
+        // "@babel/polyfill",
         path.resolve(__dirname, "src/index.tsx"),
     ],
     output: {

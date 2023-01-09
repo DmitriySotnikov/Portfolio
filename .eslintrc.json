@@ -19,7 +19,8 @@
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "./tsconfig.json",
+        "tsconfigRootDir": "./tsconfig.json",
+        /*"project": "./tsconfig.json",*/
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
@@ -28,14 +29,15 @@
         "@typescript-eslint",
         "jsx-a11y"
     ],
+    "root": true,
     "rules": {
-        "import/no-extraneous-dependencies": ["warning", {"devDependencies": true}],
+        "import/no-extraneous-dependencies": ["warn", {"devDependencies": true}],
         "react/jsx-filename-extension": [
-            "warning",
+            "warn",
             { "extensions": [".jsx", ".tsx"] }
         ],
         "import/extensions": [
-            "warning",
+            "warn",
             "ignorePackages",
             {
                 "js": "never",
