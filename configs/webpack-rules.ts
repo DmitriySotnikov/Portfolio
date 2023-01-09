@@ -1,5 +1,4 @@
-import * as path from "path";
-
+const isDev = process.env.NODE_ENV === "development"
 export const cssRules =   {
   test: /\.(sass|scss|css)$/,
   use: [
@@ -8,14 +7,14 @@ export const cssRules =   {
       loader: 'css-loader',
       options: {
         importLoaders: 2,
-        sourceMap: true,
+        sourceMap: isDev,
         modules: false
       },
     },
     {
       loader: "postcss-loader",
       options: {
-        sourceMap: true,
+        sourceMap: isDev,
         postcssOptions: {
           plugins: [
             "postcss-preset-env"
@@ -26,7 +25,7 @@ export const cssRules =   {
     {
       loader: "sass-loader",
       options: {
-        sourceMap: true
+        sourceMap: isDev
       },
     },
   ],
