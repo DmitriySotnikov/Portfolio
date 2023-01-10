@@ -1,17 +1,20 @@
 @import "settings";
 
 
-body{
+body {
   width: 1200px;
   margin: 0 auto;
   padding: 20px 0;
 }
-h1{
+
+h1 {
   color: green;
   text-align: center;
 }
 
-.img{
-  height: 300px;
-  width: 500px;
+.img {
+  display: block;
+  height: 150px;
+  width: 280px;
+  margin: 0 auto;
 }

@@ -1,15 +1,15 @@
-import * as path from 'path';
+import * as path from "path";
 // import { merge } from "webpack-merge";
 import { Configuration } from "webpack";
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { babelRules, cssRules } from "./configs/webpack-rules";
 // const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-import 'webpack-dev-server';
+import "webpack-dev-server";
 
 
 const config: Configuration = ({
-  mode: 'development',
+  mode: "development",
   devtool: "eval-cheap-module-source-map",
   entry: [
     // "@babel/polyfill",
@@ -29,7 +29,7 @@ const config: Configuration = ({
         test: /\.(png|jpe?g|gif|webp|ico)$/i,
         type: "asset/resource",
         generator: {
-          filename: "/static/img/[name].[ext]"
+          filename: "src/static/img/[name].[ext]"
         }
       },
       {
@@ -48,16 +48,16 @@ const config: Configuration = ({
       title: "Portfolio",
       favicon: path.resolve(__dirname, "src/static/img/favicon.ico"),
       template: path.resolve(__dirname, "src/index.html"),
-      filename: "index.html",
+      filename: "index.html"
     })
   ],
   resolveLoader: {
     modules: [
-      path.join(__dirname, 'node_modules')
+      path.join(__dirname, "node_modules")
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    extensions: [".tsx", ".ts", ".jsx", ".js"],
     /*
     plugins: [ new TsconfigPathsPlugin({
       configFile: "./tsconfig-for-webpack-config.json",
@@ -66,7 +66,7 @@ const config: Configuration = ({
       mainFields: ["browser", "main"],
     }) ],
     */
-    modules: [path.join(__dirname, 'node_modules')]
+    modules: [path.join(__dirname, "node_modules")]
   },
   devServer: {
     watchFiles: path.resolve(__dirname, "src"),

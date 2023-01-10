@@ -1,0 +1,7 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/node_modules
+/assets
+k8s/*
+package-lock.json
+package.json

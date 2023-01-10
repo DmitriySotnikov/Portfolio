@@ -4,7 +4,6 @@
   "description": "My portfolio",
   "main": "./src/index.tsx",
   "scripts": {
-    "webpack-ts": "cross-env TS_NODE_PROJECT=\"tsconfig.json\"",
     "start": "cross-env TS_NODE_PROJECT=\"tsconfig.json\" NODE_ENV=development webpack serve --open --progress --config ./webpack.config.ts",
     "build": "cross-env TS_NODE_PROJECT=\"configs/tsconfig-webpack-prod.json\" NODE_ENV=production webpack --config ./webpack.prod.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -50,7 +49,7 @@
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^7.0.2",
     "postcss-preset-env": "^7.8.3",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.2",
     "regenerator-runtime": "^0.13.11",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
@@ -72,11 +71,5 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-}
+  }
 }
