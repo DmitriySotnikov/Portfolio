@@ -3,44 +3,23 @@ import * as path from "path";
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import { babelRules, cssRules } from "./configs/webpack-rules";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { babelRules, cssRules, fontRules, imgRules, svgRules } from "./configs/webpack-rules";
 // const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 import "webpack-dev-server";
+import devServer from "./configs/webpack-devServer";
+import output from "./configs/outputConfig";
 
-
-const config: Configuration = ({
+const config: Configuration = {
   mode: "development",
   devtool: "eval-cheap-module-source-map",
   entry: [
     // "@babel/polyfill",
-    path.resolve(__dirname, "src/index.tsx")
+    path.resolve(__dirname, "src/index.tsx"),
   ],
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "./js/[name].js",
-    publicPath: "/",
-    assetModuleFilename: path.join("assets", "[name].[ext]")
-  },
+  output,
   module: {
-    rules: [
-      cssRules,
-      babelRules,
-      {
-        test: /\.(png|jpe?g|gif|webp|ico)$/i,
-        type: "asset/resource",
-        generator: {
-          filename: "src/static/img/[name].[ext]"
-        }
-      },
-      {
-        test: /\.(svg)$/i,
-        type: "asset/inline"
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)$/i,
-        type: "asset/inline"
-      }
-    ]
+    rules: [cssRules, babelRules, imgRules, svgRules, fontRules],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -48,14 +27,18 @@ const config: Configuration = ({
       title: "Portfolio",
       favicon: path.resolve(__dirname, "src/static/img/favicon.ico"),
       template: path.resolve(__dirname, "src/index.html"),
-      filename: "index.html"
-    })
+      filename: "index.html",
+    }),
+    new MiniCssExtractPlugin({
+      filename: `css/[name].css`,
+      chunkFilename: "[id].css",
+    }),
   ],
+
   resolveLoader: {
-    modules: [
-      path.join(__dirname, "node_modules")
-    ]
+    modules: [path.join(__dirname, "node_modules")],
   },
+
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js"],
     /*
@@ -66,15 +49,9 @@ const config: Configuration = ({
       mainFields: ["browser", "main"],
     }) ],
     */
-    modules: [path.join(__dirname, "node_modules")]
+    modules: [path.join(__dirname, "node_modules")],
   },
-  devServer: {
-    watchFiles: path.resolve(__dirname, "src"),
-    historyApiFallback: true,
-    compress: true,
-    port: 3000,
-    hot: true
-  }
-});
+  devServer,
+};
 
 export default config;

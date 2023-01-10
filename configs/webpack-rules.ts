@@ -37,3 +37,24 @@ export const babelRules = {
     cacheDirectory: true,
   },
 };
+
+export const imgRules = {
+  test: /\.(png|jpe?g|gif|webp|ico)$/i,
+  type: "asset/resource",
+  generator: {
+    filename: isDev ? "src/static/img/[name].[ext]" : "static/img/[name].[contenthash][ext]",
+  },
+};
+
+export const svgRules = {
+  test: /\.(svg)$/i,
+  type: "asset/inline",
+};
+
+export const fontRules = {
+  test: /\.(woff2?|eot|ttf|otf)$/i,
+  type: "asset/resource",
+  generator: {
+    filename: isDev ? "static/font/[name].[ext]" : "static/font/[name].[contenthash][ext]",
+  },
+};
