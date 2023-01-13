@@ -1,6 +1,6 @@
 import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
 
-const optimization = <any>{
+export const optimization = <any>{
   minimizer: [
     "...",
     new ImageMinimizerPlugin({
@@ -55,4 +55,8 @@ const optimization = <any>{
   },
 };
 
-export default optimization;
+export const performance = <any>{
+  hints: false,
+  maxEntrypointSize: 512000,
+  maxAssetSize: 512000,
+};
