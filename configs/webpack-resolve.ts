@@ -6,5 +6,5 @@ export const resolve = {
 };
 
 export const resolveLoader = {
-  modules: [path.join(__dirname, "node_modules")],
+  modules: [path.join(__dirname, "../node_modules")],
 };
