@@ -2,7 +2,6 @@ import * as path from "path";
 import { merge } from "webpack-merge";
 import { Configuration } from "webpack";
 import { babelRules, cssRules, fontRules, imgRules, svgRules } from "./configs/webpack-rules";
-// const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 import "webpack-dev-server";
 import devServer from "./configs/webpack-devServer";
 import output from "./configs/webpack-outputConfig";
@@ -23,14 +22,6 @@ const baseConfig: Configuration = {
   plugins,
   resolveLoader,
   resolve,
-  /*
-    plugins: [ new TsconfigPathsPlugin({
-      configFile: "./tsconfig-for-webpack-config.json",
-      logLevel: "info",
-      extensions: [".ts", ".tsx"],
-      mainFields: ["browser", "main"],
-    }) ],
-    */
 };
 
 const config = isDev ? merge<Configuration>(baseConfig, { devServer }) : merge<Configuration>(baseConfig, { optimization, performance });
