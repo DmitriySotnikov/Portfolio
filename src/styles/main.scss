@@ -4,21 +4,4 @@
 @import "settings";
 @import "vendor/vendor";
 
-
-body {
-  width: 1200px;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-
-h1 {
-  color: green;
-  text-align: center;
-}
-
-.img {
-  display: block;
-  height: 150px;
-  width: 280px;
-  margin: 0 auto;
-}
+@import "blocks/app";
