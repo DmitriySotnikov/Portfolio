@@ -1,0 +1,44 @@
+.header{
+  &__wraper{
+    background-color: #1d1e22;
+    width: 100%;
+    font-family: $font-regular;
+    color: #FF2B51;
+  }
+  &__inner{
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px 25px;
+    min-height: 50px;
+    @include flex(space-between, center, row);
+    @media (max-width: 767px) {
+      /* стили для xs-устройств */
+      min-width: 320px;
+    }
+    @media (min-width: 768px) and (max-width: 991px) {
+      /* стили для sm-устройств */
+    }
+    @media (min-width: 991px) and (max-width: 1199px) {
+      /* стили для md-устройств */
+    }
+  }
+  &__logo{
+    @include flex(center, center, column);
+  }
+  &__logo-name{
+    font-size: 32px;
+    font-weight: 600;
+    @media (max-width: 767px) {
+      /* стили для xs-устройств */
+      font-size: 28px;
+    }
+  }
+  &__navlinks-block{
+    @include flex(center, flex-end, row);
+  }
+  &__navlink{
+    padding: 0 20px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+}
