@@ -12,17 +12,17 @@ function Header() {
           </div>
           <div className="header__navlinks-block">
             <div className="header__navigation">
-              <NavLink className="header__navlink" to="">
+              <NavLink className="header__navlink" to="about">
                 About
               </NavLink>
             </div>
             <div className="header__navigation">
-              <NavLink className="header__navlink" to="">
+              <NavLink className="header__navlink" to="myProject">
                 My project
               </NavLink>
             </div>
             <div className="header__navigation">
-              <NavLink className="header__navlink" to="">
+              <NavLink className="header__navlink" to="cv">
                 CV
               </NavLink>
             </div>

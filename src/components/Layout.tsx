@@ -4,7 +4,7 @@ function Layout() {
   return (
     <div className="layout">
       <div className="layout__content">
-        <h5>.</h5>
+        <span>Content</span>
       </div>
     </div>
   );
