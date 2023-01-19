@@ -1,0 +1,76 @@
+.trigger{
+  // @include button(50px, $red, $background-color, $red, 2px, 35px, 17px);
+  min-width: 142px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color .2s;
+  font-size: 17px;
+  font-weight: 600;
+  &:hover{
+    // background: $red;
+  }
+  &--active{
+    background-color: $red;
+    &:hover{
+      background-color: $red;
+    }
+  }
+  &__icon{
+    height: 12px;
+    width: 14px;
+    transition: 1s;
+    position: relative;
+    padding: 0;
+    margin-left: 19px;
+    &:before{
+      content: '';
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $red;
+      box-sizing: border-box;
+      position: absolute;
+      transition: .3s;
+    }
+    &:after{
+      content: '';
+      bottom: 0;
+      height: 2px;
+      width: inherit;
+      background: $red;
+      box-sizing: border-box;
+      position: absolute;
+      transition: .3s;
+    }
+    &--active{
+      &:before{
+        transform: translateY(5px) rotate(45deg) scaleX(1.4);
+        background: $background-color;
+      }
+      &:after{
+        transform: translateY(-5px) rotate(-45deg) scaleX(1.4);
+        background: $background-color;
+      }
+    }
+  }
+  &__icon-line{
+    top: 5px;
+    width: inherit;
+    height: 2px;
+    background: $red;
+    position: absolute;
+    &--active{
+      display: none;
+    }
+  }
+  &__text{
+    padding: 0 0 0 10px;
+    &--active{
+      color: $background-color;
+    }
+  }
+}

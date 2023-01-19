@@ -2,10 +2,12 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import path from "path";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import NodePolyfillPlugin from "node-polyfill-webpack-plugin";
 
 const isDev = process.env.NODE_ENV === "development";
 
 const plugins = [
+  new NodePolyfillPlugin(),
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
     title: "Portfolio",

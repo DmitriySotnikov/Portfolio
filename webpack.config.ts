@@ -14,7 +14,7 @@ const isDev = process.env.NODE_ENV === "development";
 const baseConfig: Configuration = {
   mode: isDev ? "development" : "production",
   devtool: isDev ? "eval-cheap-module-source-map" : false,
-  entry: ["@babel/polyfill", path.resolve(__dirname, "src/index.tsx")],
+  entry: [path.resolve(__dirname, "src/index.tsx")],
   output,
   module: {
     rules: [cssRules, babelRules, imgRules, svgRules, fontRules],
