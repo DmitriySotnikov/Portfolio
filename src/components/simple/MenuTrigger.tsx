@@ -23,9 +23,8 @@ function MenuTrigger() {
         onKeyDown={(event) => keyHandler(event)}
       >
         <div className={trigger ? "trigger__icon trigger__icon--active" : "trigger__icon"}>
-          <div className={trigger ? "trigger__icon-line trigger-icon-line--active" : "trigger__icon-line"} />
+          <div className={trigger ? "trigger__icon-line trigger__icon-line--active" : "trigger__icon-line"} />
         </div>
-        <div className={trigger ? "trigger__text trigger__text--active" : "trigger__text"}>Menu</div>
       </span>
     </div>
   );

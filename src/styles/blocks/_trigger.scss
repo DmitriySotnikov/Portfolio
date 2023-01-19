@@ -1,7 +1,5 @@
 .trigger{
-  // @include button(50px, $red, $background-color, $red, 2px, 35px, 17px);
-  min-width: 142px;
-  display: flex;
+  display: none;
   align-items: center;
   cursor: pointer;
   user-select: none;
@@ -9,15 +7,10 @@
   transition: background-color .2s;
   font-size: 17px;
   font-weight: 600;
-  &:hover{
-    // background: $red;
-  }
-  &--active{
-    background-color: $red;
-    &:hover{
-      background-color: $red;
+  padding: 0 15px;
+  @media (max-width: 767px) {
+      display: flex;
     }
-  }
   &__icon{
     height: 12px;
     width: 14px;
@@ -49,11 +42,11 @@
     &--active{
       &:before{
         transform: translateY(5px) rotate(45deg) scaleX(1.4);
-        background: $background-color;
+        background: $red;
       }
       &:after{
         transform: translateY(-5px) rotate(-45deg) scaleX(1.4);
-        background: $background-color;
+        background: $red;
       }
     }
   }
@@ -65,12 +58,6 @@
     position: absolute;
     &--active{
       display: none;
-    }
-  }
-  &__text{
-    padding: 0 0 0 10px;
-    &--active{
-      color: $background-color;
     }
   }
 }

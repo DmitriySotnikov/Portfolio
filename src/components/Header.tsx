@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import MenuTrigger from "./simple/MenuTrigger";
 
 function Header() {
   return (
@@ -17,7 +18,7 @@ function Header() {
               </NavLink>
             </div>
             <div className="header__navigation">
-              <NavLink className="header__navlink" to="myProject">
+              <NavLink className="header__navlink" to="My Project">
                 My project
               </NavLink>
             </div>
@@ -26,6 +27,7 @@ function Header() {
                 CV
               </NavLink>
             </div>
+            <MenuTrigger />
           </div>
         </div>
       </div>
