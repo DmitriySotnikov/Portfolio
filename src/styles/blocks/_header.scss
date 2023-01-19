@@ -36,6 +36,11 @@
   &__navlinks-block{
     @include flex(center, flex-end, row);
   }
+  &__navigation{
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
   &__navlink{
     padding: 0 20px;
     color: #fff;
