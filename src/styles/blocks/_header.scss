@@ -1,4 +1,7 @@
 .header{
+  width: 100%;
+  position: fixed;
+  height: $header-height;
   &__wraper{
     background-color: #1d1e22;
     width: 100%;
@@ -9,7 +12,7 @@
     margin: 0 auto;
     max-width: 1200px;
     padding: 20px 25px;
-    min-height: 50px;
+    height: 100%;
     @include flex(space-between, center, row);
     @media (max-width: 767px) {
       /* стили для xs-устройств */

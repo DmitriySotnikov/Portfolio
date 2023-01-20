@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import MenuTrigger from "./simple/MenuTrigger";
+import MenuTrigger from "./simples/MenuTrigger";
 
 function Header() {
   return (
