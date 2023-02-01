@@ -11,7 +11,7 @@ const plugins = [
   new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
     title: "Portfolio",
-    favicon: path.resolve(__dirname, "../src/static/img/favicon.ico"),
+    // favicon: path.resolve(__dirname, "../src/static/img/favicon.ico"),
     template: path.resolve(__dirname, "../src/index.html"),
     filename: "index.html",
   }),
