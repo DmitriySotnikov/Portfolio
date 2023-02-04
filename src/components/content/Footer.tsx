@@ -14,18 +14,18 @@ function Footer() {
         </div>
         <div className="footer__sector">
           <div className="footer__sector-title">
-            <span className="footer__title-text">Dmitry Sotnikov</span>
+            <span className="footer__title-text">EXPLORE</span>
           </div>
           <div className="footer__block-text">
-            <span className="footer__text">Portfolio website</span>
+            <span className="footer__text">Home</span>
           </div>
         </div>
         <div className="footer__sector">
           <div className="footer__sector-title">
-            <span className="footer__title-text">Dmitry Sotnikov</span>
+            <span className="footer__title-text">FOLLOW</span>
           </div>
           <div className="footer__block-text">
-            <span className="footer__text">Portfolio website</span>
+            <span className="footer__text">Git</span>
           </div>
         </div>
       </div>
@@ -33,4 +33,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Footer as React.FC;
