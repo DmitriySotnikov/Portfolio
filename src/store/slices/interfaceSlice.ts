@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 // Define a type for the slice state
-interface InterfaceState {
+export interface InterfaceState {
   isOpen: boolean
 }
 
@@ -10,7 +10,7 @@ const initialState: InterfaceState = {
   isOpen: false,
 }
 
-export const interfaceSlice = createSlice({
+const interfaceSlice = createSlice({
   name: 'interface',
   initialState,
   reducers: {
@@ -20,6 +20,8 @@ export const interfaceSlice = createSlice({
     },
 })
 
-export const { open } = interfaceSlice.actions
+export const { 
+    open 
+} = interfaceSlice.actions
 
 export default interfaceSlice.reducer

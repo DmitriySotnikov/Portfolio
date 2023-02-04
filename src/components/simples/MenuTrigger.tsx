@@ -1,29 +1,30 @@
-import React, { useRef, useState } from "react";
-
-// interface IProps {isActive: boolean;} { isActive }: IProps
+import React, { useRef } from "react";
+import { useAppSelector, useAppDispatch} from "../../hooks/storeHooks"
+import {open} from "../../store/slices/interfaceSlice"
 
 function MenuTrigger() {
   const ref = useRef(null);
-  const [trigger, setTrigger] = useState<boolean>(false);
-  const triggerHandler = () => setTrigger(!trigger);
+  const dispatch = useAppDispatch()
+  const isOpen = useAppSelector((state) => state.interface.isOpen)
+  const triggerHandler = () => dispatch(open(!isOpen));
   const keyHandler = (event: React.KeyboardEvent<HTMLSpanElement>) => {
     const { key } = event;
     if (key === "Enter") {
-      setTrigger(!trigger);
+      dispatch(open(!isOpen));
     }
   };
   return (
     <div>
       <span
-        className={trigger ? "trigger trigger--active" : "trigger"}
+        className={isOpen ? "trigger trigger--active" : "trigger"}
         onClick={() => triggerHandler()}
         ref={ref}
         role="menu"
         tabIndex={0}
         onKeyDown={(event) => keyHandler(event)}
       >
-        <div className={trigger ? "trigger__icon trigger__icon--active" : "trigger__icon"}>
-          <div className={trigger ? "trigger__icon-line trigger__icon-line--active" : "trigger__icon-line"} />
+        <div className={isOpen ? "trigger__icon trigger__icon--active" : "trigger__icon"}>
+          <div className={isOpen ? "trigger__icon-line trigger__icon-line--active" : "trigger__icon-line"} />
         </div>
       </span>
     </div>
