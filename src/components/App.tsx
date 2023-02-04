@@ -3,6 +3,7 @@ import "../styles/main.scss";
 import Layout from "./Layout";
 import Header from "./Header";
 import SliderMenu from "./blocks/SliderMenu";
+import Footer from "./content/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <SliderMenu />
       <Layout />
+      <Footer />
     </div>
   );
 }
