@@ -3,7 +3,16 @@
     &__content{
         max-width: $width;
         margin: 0 auto;
-        @include flex(space-around, center, row);
+        @include flex(space-around, flex-start, row);
+    }
+    &__sector-title{
+        padding: 15px 0;
+    }
+    &__block-link{
+        padding: 7px 0;
+    }
+    &__link{
+        color: $font-color;
     }
     &__sector{
         @include flex(center, center, column)

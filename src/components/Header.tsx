@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Items from "../constans/slider-menu-items";
 import MenuTrigger from "./simples/MenuTrigger";
 
 function Header() {
@@ -12,21 +13,13 @@ function Header() {
             <span className="header__logo-name">Sotnikov</span>
           </div>
           <div className="header__navlinks-block">
-            <div className="header__navigation">
-              <NavLink className="header__navlink" to="about">
-                About
-              </NavLink>
-            </div>
-            <div className="header__navigation">
-              <NavLink className="header__navlink" to="My Project">
-                My project
-              </NavLink>
-            </div>
-            <div className="header__navigation">
-              <NavLink className="header__navlink" to="cv">
-                CV
-              </NavLink>
-            </div>
+            {Items.map((el) => (
+              <div className="header__navigation" key={el.id}>
+                <NavLink className="header__navlink" to={el.link}>
+                  {el.name}
+                </NavLink>
+              </div>
+            ))}
             <MenuTrigger />
           </div>
         </div>

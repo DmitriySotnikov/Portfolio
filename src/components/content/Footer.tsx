@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import Items from "../../constans/slider-menu-items";
 
 function Footer() {
   return (
@@ -6,19 +8,23 @@ function Footer() {
       <div className="footer__content">
         <div className="footer__sector">
           <div className="footer__sector-title">
-            <span className="footer__title-text">Dmitry Sotnikov</span>
+            <span className="footer__title-text">Portfolio website</span>
           </div>
           <div className="footer__block-text">
-            <span className="footer__text">Portfolio website</span>
+            <span className="footer__text">Dmitry Sotnikov</span>
           </div>
         </div>
         <div className="footer__sector">
           <div className="footer__sector-title">
             <span className="footer__title-text">EXPLORE</span>
           </div>
-          <div className="footer__block-text">
-            <span className="footer__text">Home</span>
+          {
+            Items.map((el) => (
+              <div className="footer__block-link" key={el.id}>
+            <NavLink className="footer__link" to={el.link}>{el.name}</NavLink>
           </div>
+            ))
+          }
         </div>
         <div className="footer__sector">
           <div className="footer__sector-title">

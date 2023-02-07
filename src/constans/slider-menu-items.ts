@@ -1,18 +1,33 @@
 const Items = [
   {
     id: 0,
-    name: "about",
-    link: "about"
+    name: "Home",
+    link: "/"
   },
   {
     id: 1,
-    name: "my progect",
-    link: "progect"
+    name: "About",
+    link: "/about"
   },
   {
     id: 2,
-    name: "cv",
-    link: "cv"
+    name: "Portfolio",
+    link: "/portfolio"
+  },
+  {
+    id: 3,
+    name: "Skills",
+    link: "/skills"
+  },
+  {
+    id: 4,
+    name: "Contacts",
+    link: "/contacts"
+  },
+  {
+    id: 5,
+    name: "CV",
+    link: "/cv"
   },
 ];
 
