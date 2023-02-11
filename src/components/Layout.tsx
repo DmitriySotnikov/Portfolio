@@ -1,10 +1,11 @@
 import React from "react";
+import Intro from "./blocks/Intro";
 
 function Layout() {
   return (
     <div className="layout">
       <div className="layout__content">
-        <span>Content</span>
+        <Intro />
       </div>
     </div>
   );

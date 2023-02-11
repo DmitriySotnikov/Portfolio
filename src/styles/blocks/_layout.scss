@@ -2,12 +2,12 @@
   &__content{
     font-family: $font-regular;
     color: #FF2B51;
-    background-color: #1d1e22;
+    background-color: inherit;
     width: 100%;
     max-width: $width;
     margin: 0 auto;
     height: 100%;
     min-height: 100vh;
-    padding: $header-height+5px 25px 25px;
+    padding: 0 25px 25px; // $header-height+5px
   }
 }

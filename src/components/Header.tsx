@@ -9,8 +9,8 @@ function Header() {
       <div className="header__wraper">
         <div className="header__inner">
           <div className="header__logo">
-            <span className="header__logo-name">Dmitry</span>
-            <span className="header__logo-name">Sotnikov</span>
+            <span className="header__logo-name">: D</span>
+            <span className="header__logo-name"> </span>
           </div>
           <div className="header__navlinks-block">
             {Items.map((el) => (

@@ -3,10 +3,10 @@
   position: fixed;
   height: $header-height;
   &__wraper{
-    background-color: #1d1e22;
+    background-color: $background-color-black-theme;
     width: 100%;
     font-family: $font-regular;
-    color: #FF2B51;
+    color:$red;
   }
   &__inner{
     margin: 0 auto;

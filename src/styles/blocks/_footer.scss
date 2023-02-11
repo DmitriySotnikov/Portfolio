@@ -1,5 +1,7 @@
 .footer{
     padding: 45px 0;
+    font-family: $font-regular;
+    color: $font-color;
     &__content{
         max-width: $width;
         margin: 0 auto;
@@ -7,6 +9,9 @@
     }
     &__sector-title{
         padding: 15px 0;
+    }
+    &__title-text{
+        font-weight: 600;
     }
     &__block-link{
         padding: 7px 0;
